@@ -1,5 +1,8 @@
 import * as model from './models/index.js';
 import components from './components';
+import '../styles.css'
+import "@babel/polyfill";
+
 // --- APP ---
 window.addEventListener('load', loadApp);
 
@@ -14,17 +17,19 @@ function loadApp() {
 }
 
 function renderOrderList(rootElement) {
-  const orders = model.getOrdersList();
-  const orderListHTML = components.getOrdersListHtml(orders);
+  model.getOrdersList((err, orders) => {
+    const orderListHTML = components.getOrdersListHtml({ orders });
 
-  rootElement.innerHTML = orderListHTML;
+    rootElement.innerHTML = orderListHTML;
+  });
 }
 
-function renderUserData(rootElement) {
-  const user = model.getUserData();
-  const userDataHTML = components.getUserDataHtml(user);
-
-  rootElement.innerHTML = userDataHTML;
+async function renderUserData(rootElement) {
+  model.getUserData((err, user) => {
+    const userDataHTML = components.getUserDataHtml(user);
+  
+    rootElement.innerHTML = userDataHTML;
+  });
 }
 // -----------------
 
