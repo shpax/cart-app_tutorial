@@ -4,7 +4,7 @@
    3. api proxying
    4. env variables, NODE_ENV, dev/prod configurations
    5. sourcemaps
-   2. debugging via VS Code
+   6. debugging via VS Code
 2. Async in JS
    1. Event Loop, setTimeout example,
    2. Error handling in callbacks
