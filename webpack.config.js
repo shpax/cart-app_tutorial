@@ -6,7 +6,10 @@ const { SourceMapDevToolPlugin } = require('webpack');
 const IS_PRODUCTION = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    user: './src/user.js',
+    orders: './src/orders.js'
+  },
   output: {
     filename: '[name].[hash].js',
   },
