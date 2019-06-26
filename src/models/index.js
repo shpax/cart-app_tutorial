@@ -1,24 +1,35 @@
 import request from 'browser-request'
+import axios from 'axios'
 
 // import axios from 'axios'
 
-const ORIGIN = 'https://pdffiller-js-school.brutgroot.com'
+const ORIGIN = '/api'
 // --- MODELS ---
-export function getOrdersList(callback) {
-  request({ url: `${ORIGIN}/cart`, json:true }, (err, res, body) => {
-    callback(err, body);
-  })
-  // const { data } = await axios.get(`${ORIGIN}/cart`);
-  // return data;
+export async function getOrdersList(callback) {
+  // callbacks
+  // request({ url: `${ORIGIN}/cart`, json:true }, (err, res, body) => {
+  //   callback(err, body);
+  // })
+
+  // promises
+  // return axios.get(`${ORIGIN}/cart`).then(({ data }) => data);
+
+  // async/await
+  const { data } = await axios.get(`${ORIGIN}/cart`);
+  return data;
 }
 
-export function getUserData(callback) {
+export async function getUserData(callback) {
+  // callbacks
+  // request({ url: `${ORIGIN}/me`, json:true }, (err, res, body) => {
+  //   callback(err, body);
+  // })
 
-  request({ url: `${ORIGIN}/me`, json:true }, (err, res, body) => {
-    callback(err, body);
-  })
+  // promises
+  // return axios.get(`${ORIGIN}/me`).then(({ data }) => data);
 
-  // const { data } = await axios.get(`${ORIGIN}/me`);
-  // return data;
+  // async/await
+  const { data } = await axios.get(`${ORIGIN}/me`);
+  return data;
 }
 // -----------------

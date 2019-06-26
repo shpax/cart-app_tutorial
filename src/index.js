@@ -1,6 +1,5 @@
 import * as model from './models/index.js';
-import components from './components';
-import '../styles.css'
+// import components from './components';
 import "@babel/polyfill";
 
 // --- APP ---
@@ -16,20 +15,25 @@ function loadApp() {
   renderUserData(userDataRootElement);
 }
 
-function renderOrderList(rootElement) {
-  model.getOrdersList((err, orders) => {
-    const orderListHTML = components.getOrdersListHtml({ orders });
+async function renderOrderList(rootElement) {
+  const [{ default: components }, orders] = await Promise.all([
+    import(/* webpackChunkName: "components" */ './components'),
+    model.getOrdersList(),
+  ]);
+  const orderListHTML = components.getOrdersListHtml({ orders });
 
-    rootElement.innerHTML = orderListHTML;
-  });
+  rootElement.innerHTML = orderListHTML;
 }
 
 async function renderUserData(rootElement) {
-  model.getUserData((err, user) => {
-    const userDataHTML = components.getUserDataHtml(user);
-  
-    rootElement.innerHTML = userDataHTML;
-  });
+  const [{ default: components }, user] = await Promise.all([
+    import(/* webpackChunkName: "components" */ './components'),
+    model.getUserData(),
+  ]);
+
+  const userDataHTML = components.getUserDataHtml(user);
+
+  rootElement.innerHTML = userDataHTML;
 }
 // -----------------
 
