@@ -35,7 +35,7 @@ module.exports = {
 
   devServer: {
     contentBase: path.join(__dirname, 'static'),
-    open: true,
+    open: false,
     hot: true,
     port: 8090,
     proxy: {
@@ -48,7 +48,7 @@ module.exports = {
     }
   },
 
-  devtool: IS_PRODUCTION ? 'inline-source-map' : false,
+  devtool: IS_PRODUCTION ? 'cheap-module-eval-source-map' : 'source-map',
   mode: IS_PRODUCTION ? 'production' : 'development',
 
   plugins: [
